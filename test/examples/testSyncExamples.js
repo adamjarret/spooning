@@ -12,10 +12,6 @@ function defineTests({testSync, reporter})
 
     // Simple pass
 
-    testSync('Should pass', () => {
-        ok(true);
-    });
-
     testSync('Should pass with message', () => {
         return 'O hi Mark!';
     });
@@ -30,16 +26,8 @@ function defineTests({testSync, reporter})
 
     // Simple fail
 
-    testSync('Should fail', () => {
-        ok(false);
-    });
-
     testSync('Should fail with message', () => {
         ok(false, 'Example error message');
-    });
-
-    testSync('Should fail comparison', () => {
-        strictEqual('A', 'B');
     });
 
     testSync('Should fail comparison with message', () => {

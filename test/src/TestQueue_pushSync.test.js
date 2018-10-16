@@ -1,4 +1,4 @@
-const {promisify} = require('util');
+const promisify = require('util.promisify');
 const {it, TestQueue, UnexpectedOutputError} = require('../common/spooning');
 
 it('Sync Test should callback', (callback) => {

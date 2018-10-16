@@ -1,27 +1,22 @@
-1..10
-ok 1 - Should pass
-ok 2 - Should pass with message
+1..7
+ok 1 - Should pass with message
 # O hi Mark!
-ok 3 - Should pass with numeric message
+ok 2 - Should pass with numeric message
 # 123
-ok 4 - Should pass with object message
+ok 3 - Should pass with object message
 # {
 #   "count": 4,
 #   "total": 8
 # }
-not ok 5 - Should fail
-# ! false == true
-not ok 6 - Should fail with message
+not ok 4 - Should fail with message
 # ! Example error message
-not ok 7 - Should fail comparison
-# ! 'A' === 'B'
-not ok 8 - Should fail comparison with message
+not ok 5 - Should fail comparison with message
 # ! > BABBAB
 # ! < BAABBB
-not ok 9 - Should fail comparison with message (without assert)
+not ok 6 - Should fail comparison with message (without assert)
 # ! > BABBAB
 # ! < BAABBB
-not ok 10 - Should fail comparison with prefixed message
+not ok 7 - Should fail comparison with prefixed message
 # ! > B
 # ! > A
 # ! > C
@@ -30,6 +25,6 @@ not ok 10 - Should fail comparison with prefixed message
 # ! < B
 # ! < C
 # ! < 
-# test: 10
-# pass: 4
-# fail: 6
+# test: 7
+# pass: 3
+# fail: 4

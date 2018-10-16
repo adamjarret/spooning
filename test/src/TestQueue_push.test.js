@@ -1,4 +1,4 @@
-const {promisify} = require('util');
+const promisify = require('util.promisify');
 const {ok, strictEqual, deepEqual} = require('assert');
 const {it, acEx, TestQueue, UnexpectedOutputError} = require('../common/spooning');
 
@@ -180,7 +180,9 @@ it('Test should fail', (done) => {
         ok(false);
         callback();
 
-    }, expectErrorMessage('false == true', done));
+    }, (error, info) => {
+        done(error ? null : new Error(`callback was called with value: ${info}`));
+    });
 
     run();
 });
@@ -203,14 +205,15 @@ it('Test should fail with message', (done) => {
 it('Test should fail comparison', (done) => {
 
     const {test, run} = new TestQueue();
-    const expected = '\'A\' === \'B\'';
 
     test('Should fail', (callback) => {
 
         strictEqual('A', 'B');
         callback();
 
-    }, expectErrorMessage(expected, done));
+    }, (error, info) => {
+        done(error ? null : new Error(`callback was called with value: ${info}`));
+    });
 
     run();
 });

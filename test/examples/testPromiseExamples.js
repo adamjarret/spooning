@@ -12,11 +12,6 @@ function defineTests({testPromise, reporter})
 
     // Simple pass
 
-    testPromise('Should pass', () => new Promise((resolve) => {
-        ok(true);
-        resolve();
-    }));
-
     testPromise('Should pass with message', () => new Promise((resolve) => {
         ok(true);
         resolve('O hi Mark!');
@@ -34,18 +29,8 @@ function defineTests({testPromise, reporter})
 
     // Simple fail
 
-    testPromise('Should fail', () => new Promise((resolve) => {
-        ok(false);
-        resolve();
-    }));
-
     testPromise('Should fail with message', () => new Promise((resolve) => {
         ok(false, 'Example error message');
-        resolve();
-    }));
-
-    testPromise('Should fail comparison', () => new Promise((resolve) => {
-        strictEqual('A', 'B');
         resolve();
     }));
 

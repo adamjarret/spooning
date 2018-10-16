@@ -258,6 +258,7 @@ __Dev Dependencies__
 - [nyc][nyc] — generate test coverage reports
 - [node-coveralls][nodeCoveralls] — publish test coverage reports to [coveralls.io][coveralls]
 - [tape][tape] — run unit tests ([or use spooning itself](#run-with-spooning))
+- [util.promisify][pf_promisify] — polyfill for `promisify` on node < 8
 	
 ## Contributing
 
@@ -318,6 +319,8 @@ See the [LICENSE.txt][license] file for details.
 [util]: https://nodejs.org/api/util.html
 
 [promisify]: https://nodejs.org/api/util.html#util_util_promisify_original
+
+[pf_promisify]: https://www.npmjs.com/package/util.promisify
 
 [Promise]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 

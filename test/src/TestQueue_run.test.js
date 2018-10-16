@@ -1,4 +1,4 @@
-const {promisify} = require('util');
+const promisify = require('util.promisify');
 const {it, TestQueue} = require('../common/spooning');
 const once = require('../common/once');
 

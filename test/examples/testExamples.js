@@ -12,11 +12,6 @@ function defineTests({test, reporter})
 
     // Simple pass
 
-    test('Should pass', (callback) => {
-        ok(true);
-        callback();
-    });
-
     test('Should pass with message', (callback) => {
         ok(true);
         callback(null, 'O hi Mark!');
@@ -34,18 +29,8 @@ function defineTests({test, reporter})
 
     // Simple fail
 
-    test('Should fail', (callback) => {
-        ok(false);
-        callback();
-    });
-
     test('Should fail with message', (callback) => {
         ok(false, 'Example error message');
-        callback();
-    });
-
-    test('Should fail comparison', (callback) => {
-        strictEqual('A', 'B');
         callback();
     });
 
