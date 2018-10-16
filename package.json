@@ -10,7 +10,7 @@
     "test": "npm run lint && npm run tape",
     "cover": "nyc npm run tape",
     "cover-html": "npm run cover && nyc report --reporter=html --report-dir=.coverage",
-    "coveralls": "npm run cover && nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "clean": "rm -f test/dump/*.txt spooning-*.tgz",
     "pack": "npm pack --dry-run"
   },
