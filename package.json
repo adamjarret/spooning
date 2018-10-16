@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/adamjarret/spooning/issues"
   },
-  "homepage": "https://github.com/adamjarret/spooning#readme",
+  "homepage": "https://adamjarret.github.io/spooning",
   "dependencies": {
     "async": "^2.6.1"
   },
