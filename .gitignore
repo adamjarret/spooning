@@ -3,3 +3,4 @@
 
 spooning-*.tgz
 node_modules/
+coverage.lcov

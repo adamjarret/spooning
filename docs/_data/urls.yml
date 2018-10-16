@@ -95,10 +95,6 @@ promisify: https://nodejs.org/api/util.html#util_util_promisify_original
 
 async: https://caolan.github.io/async/
 
-coveralls: https://coveralls.io/
-
-coverallsNode: https://github.com/nickmerwin/node-coveralls
-
 eslint: https://eslint.org
 
 lodash: https://lodash.com

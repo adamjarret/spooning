@@ -1,7 +1,12 @@
 # spooning 
 
-[![Build Status](https://travis-ci.org/adamjarret/spooning.svg?branch=master)](https://travis-ci.org/adamjarret/spooning)
-[![Coverage Status](https://coveralls.io/repos/github/adamjarret/spooning/badge.svg?branch=master)](https://coveralls.io/github/adamjarret/spooning?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/adamjarret/spooning.svg)](https://greenkeeper.io/)
+[![Package Version](https://img.shields.io/npm/v/spooning.svg)](https://npmjs.com/package/spooning)
+[![Build Status](https://img.shields.io/travis/adamjarret/spooning.svg)](https://travis-ci.org/adamjarret/spooning)
+[![Coverage Status](https://img.shields.io/codecov/c/github/adamjarret/spooning.svg)](https://codecov.io/gh/adamjarret/spooning)
+[![Dependencies](https://img.shields.io/david/adamjarret/spooning.svg)](https://david-dm.org/adamjarret/spooning)
+[![Dev Dependencies](https://img.shields.io/david/dev/adamjarret/spooning.svg)](https://david-dm.org/adamjarret/spooning?type=dev)
+[![Greenkeeper](https://badges.greenkeeper.io/adamjarret/spooning.svg)](https://greenkeeper.io/)
+
 
 [TAP][testanything]-producing test runner that is minimal but not uncivilized
 
@@ -238,11 +243,11 @@ __Example__
 Use the `npm run cover` command to output a text-based coverage report.
 
 Occasionally, the text based report will show values less than 100% but not identify any offending line numbers.
-Use the `npm run cover-html` command to output a more detailed html-based coverage report to the __.coverage__ directory.
+Use the `npm run html` command to output a more detailed html-based coverage report to the __.coverage__ directory.
 
 It should be noted that `nyc` is perfectly capable of generating coverage reports on
 tests run with spooning.
-The `tape` results are used by `npm run cover` and `npm run cover-html` to prevent any
+The `tape` results are used by `npm run cover` to prevent any
 false positives that may arise when a library tests itself.
 
 ## Built With
@@ -256,7 +261,6 @@ __Dev Dependencies__
 
 - [eslint][eslint] — enforce consistent code style
 - [nyc][nyc] — generate test coverage reports
-- [node-coveralls][nodeCoveralls] — publish test coverage reports to [coveralls.io][coveralls]
 - [tape][tape] — run unit tests ([or use spooning itself](#run-with-spooning))
 - [util.promisify][pf_promisify] — polyfill for `promisify` on node < 8
 	
@@ -308,8 +312,6 @@ See the [LICENSE.txt][license] file for details.
 
 [testanything]: http://testanything.org
 
-[coveralls]: https://coveralls.io/
-
 [semVer]: https://semver.org/
 
 [npmVersion]: https://docs.npmjs.com/cli/version
@@ -335,8 +337,6 @@ See the [LICENSE.txt][license] file for details.
 [Ouroboros]: https://en.wikipedia.org/wiki/Ouroboros
 
 [nyc]: https://istanbul.js.org/
-
-[nodeCoveralls]: https://github.com/nickmerwin/node-coveralls
 
 [cli]: https://github.com/adamjarret/spooning-cli
 

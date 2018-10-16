@@ -5,3 +5,4 @@ spooning-*.tgz
 docs/
 examples/
 test/
+coverage.lcov
