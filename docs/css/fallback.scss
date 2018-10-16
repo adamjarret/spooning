@@ -1,0 +1,32 @@
+---
+---
+
+@import "variables";
+@import "mixins";
+
+.fallback {
+  ul {
+    @include clearfix;
+    list-style: none;
+    padding-left: 0;
+    li {
+      padding: 0;
+      margin: 0 16px 0 0;
+      float: left;
+      display: block;
+    }
+  }
+}
+
+@media screen and (min-width: $min-md) {
+  .fallback {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $min-md - 1px) {
+  .nojs main {
+    /* increase offset for fixed header to accommodate additional row of links */
+    padding-top: 90px;
+  }
+}

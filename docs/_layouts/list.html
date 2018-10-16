@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<link rel="stylesheet" href="{{ site.baseurl }}/css/list.css">
+
+{{ content }}
+
+<nav class="page-cards">
+    <ul>
+        {% assign sorted_pages = site.pages | sort:"order" %}
+        {% for p in sorted_pages  %}
+            {% assign size = p.url.size | minus: 5 %} <!-- url length - ".html" -->
+            {% if p.section == page.title %}
+            <li class="{{ p.type }}">
+                <h2><a href='{{ site.baseurl }}{{ p.url | slice: 0, size }}'>
+                    {% if p.displayTitle %}
+                        {{ p.displayTitle }}
+                    {% else %}
+                        {{ p.title }}
+                    {% endif %}
+                </a></h2>
+                {{ p.description | markdownify }}
+            </li>
+            {% endif %}
+        {% endfor %}  <!-- page -->
+    </ul>
+</nav>

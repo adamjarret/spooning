@@ -1,0 +1,45 @@
+{
+  "name": "spooning",
+  "version": "0.9.0",
+  "description": "TAP-producing test runner that is minimal but not uncivilized",
+  "main": "index.js",
+  "scripts": {
+    "t": "node test/run.js",
+    "tape": "tape test/runTape.js",
+    "lint": "eslint index.js lib test",
+    "test": "npm run lint && npm run tape",
+    "cover": "nyc npm run tape",
+    "cover-html": "npm run cover && nyc report --reporter=html --report-dir=.coverage",
+    "coveralls": "npm run cover && nyc report --reporter=text-lcov | coveralls",
+    "clean": "rm -f test/dump/*.txt spooning-*.tgz",
+    "pack": "npm pack --dry-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamjarret/spooning.git"
+  },
+  "keywords": [
+    "TAP",
+    "test",
+    "anything",
+    "run",
+    "runner",
+    "harness",
+    "unit"
+  ],
+  "author": "Adam Jarret <adam@atj.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adamjarret/spooning/issues"
+  },
+  "homepage": "https://github.com/adamjarret/spooning#readme",
+  "dependencies": {
+    "async": "^2.6.1"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.2",
+    "eslint": "^5.6.1",
+    "nyc": "^13.0.1",
+    "tape": "^4.9.1"
+  }
+}

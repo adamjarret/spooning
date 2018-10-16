@@ -1,0 +1,33 @@
+# For technical reasons, this file is *NOT* automatically reloaded by `bundle exec jekyll serve`.
+# After changing this file, restart the server process.
+# Variables are accessible in templates via {{ site.title }}, etc.
+
+#
+# Site settings
+
+title: spooning - async test runner for node.js
+
+description: TAP-producing test runner that is minimal but not uncivilized
+
+baseurl: "/spooning" # the subpath of the site, e.g. /blog
+
+url: "https://adamjarret.github.io" # the base hostname & protocol for the site, e.g. http://example.com
+
+#
+# Build settings
+
+markdown: kramdown
+
+# Exclude from processing
+exclude:
+  # default
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  # project specific
+  - Makefile
+  - README.md

@@ -1,0 +1,136 @@
+name: Reporter
+kind: class
+
+description: |
+  This class estabilishes the Reporter protocol: an object that implements `runStart`, `runEnd` and `testResult`.
+  An object with this signature may be passed as the first argument to the [`TestQueue`](/spooning/api/TestQueue)
+  constructor. See [Customization](/spooning/guide/customization) for more information.
+
+  The default implementation writes [TAP](https://testanything.org)-formatted output to the provided stream.
+  All `callback` functions are passed to the `this.stream.write` function.
+  If an error is thrown or emitted during a write operation, it is caught and passed to the `callback`.
+
+properties:
+- name: tap
+  type: Tap
+  description: TAP-producer object
+
+- name: stream
+  type: Writable
+  description: data is written to this stream
+
+methods:
+- name: constructor
+
+  description: |
+    Creates a new `Reporter` object and sets the `this.tap` and `this.stream` properties.
+
+  params:
+  - name: tap
+    type: Tap
+    description: TAP-producer object
+
+  - name: stream
+    type: Writable
+    description: data is written to this stream
+
+  examples:
+  - code: |
+      const {Tap, Reporter} = require('spooning');
+      const reporter = new Reporter(new Tap(), process.stdout);
+
+
+
+- name: runStart
+
+  description: |
+    Write a TAP plan to `this.stream`.
+
+  params:
+  - name: info
+    type: RunStartInfo
+
+  - name: callback
+    type: function
+    params:
+    - name: error
+      type: Error
+      description: "write error (or falsy value if none occurred)"
+    description: called when write finishes
+
+  see:
+  - name: Tap
+    description: uses `tap.handleStart` to render the plan string
+
+  - name: TestQueue
+    description: called by `TestQueue` before the first test is run (unless `testQueue.setAutoRun(true);` has been called)
+
+  examples:
+  - code: |
+      reporter.runStart({count: 2}, () => {
+        //  plan has been written
+      });
+
+
+
+- name: runEnd
+
+  description: |
+    Write a footer with final result counts as a TAP diagnostic message to `this.stream`.
+
+  params:
+  - name: info
+    type: RunEndInfo
+
+  - name: callback
+    type: function
+    params:
+    - name: error
+      type: Error
+      description: "write error (or falsy value if none occurred)"
+    description: called when write finishes
+
+  see:
+  - name: Tap
+    description: uses `tap.handleEnd` to render the string
+
+  - name: TestQueue
+    description: called by `TestQueue` after the last test is run
+
+  examples:
+  - code: |
+      reporter.runEnd({total: 2, passed: 1}, () => {
+        //  footer has been written
+      });
+
+
+
+- name: testResult
+
+  description: |
+    Write a TAP result to `this.stream`.
+
+  params:
+  - name: info
+    type: TestResultInfo
+
+  - name: callback
+    type: function
+    params:
+    - name: error
+      type: Error
+      description: "write error (or falsy value if none occurred)"
+    description: called when write finishes
+
+  see:
+  - name: Tap
+    description: uses `tap.handleResult` to render the string
+
+  - name: TestQueue
+    description: called by `TestQueue` when a test completes
+
+  examples:
+  - code: |
+      reporter.testResult({idx: 1, name: 'Should pass'}, () => {
+        //  result has been written
+      });

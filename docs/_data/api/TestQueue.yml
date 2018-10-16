@@ -1,0 +1,315 @@
+name: TestQueue
+kind: class
+
+description: |
+  Enqueue and run tests (optionally in parallel).
+
+properties:
+- name: reporter
+  type: Reporter
+
+emits:
+- name: runStart
+  type: RunStartInfo
+  description: emitted when the queue begins processing tests
+
+- name: runEnd
+  type: RunEndInfo
+  description: emitted when the queue finishes processing tests
+
+- name: testResult
+  type: TestResultInfo
+  description: emitted when a test completes
+
+- name: error
+  type: Error
+  description: emitted when an error occurs (not including test failures) when running tests
+
+methods:
+- name: constructor
+
+  description: |
+    Creates a new `TestQueue` object and sets the `this.reporter` property.
+
+  params:
+  - name: reporter
+    type: Reporter
+    description: optional (if not defined, no output will be written but [events](#events) will still fire)
+
+  - name: options
+    type: Object
+    description: optional
+    params:
+    - name: concurrency
+      type: number
+      description: how many tests to run in parallel
+      default: 1
+    - name: autoRun
+      type: bool
+      description: if `true`, start running tests as soon as the first one is defined
+      default: "false"
+    - name: bail
+      type: bool
+      description: if `true`, drain after first test failure
+      default: "false"
+
+  examples:
+  - code: |
+      const {Tap, Reporter, TestQueue} = require('spooning');
+      const testQueue = new TestQueue(new Reporter(new Tap(), process.stdout));
+
+
+
+- name: push
+
+  aliases:
+  - test
+  - it
+
+  description: |
+    Enqueue a test. This should not be called after [`this.run`](#run).
+    Compatible with `promisify`.
+
+    This method is a context-bound version of the private method `_push`.
+    If a subclass needs to override, it should override the private method.
+
+  params:
+  - name: name
+    type: string
+    description: name of test
+  - name: test
+    type: function
+    description: test definition
+    params:
+    - name: callback
+      type: function
+      description: call to indicate test is complete
+      params:
+      - name: error
+        type: Error|falsy
+        description: Error indicating failure reason (or falsy)
+      - name: message
+        type: any
+        description: optional diagnostic message (or falsy)
+  - name: callback
+    type: function
+    description: called when test has run (optional)
+    params:
+    - name: error
+      type: Error|falsy
+      description: error indicating test failure (or falsy)
+    - name: info
+      type: TestResultInfo
+
+  examples:
+  - code: |
+      testQueue.push('Should pass', (callback) => {
+          setTimeout(() => {
+              callback(null, 'optional diagnostic message'); // pass
+          }, 100);
+      });
+
+      testQueue.push('Should fail', (callback) => {
+          setTimeout(() => {
+              callback(new Error('nope')); // fail
+          }, 100);
+      });
+
+
+
+- name: pushPromise
+
+  aliases:
+  - swear
+
+  description: |
+    Enqueue a `Promise`-based test. This should not be called after [`this.run`](#run).
+    Compatible with `promisify`.
+
+    This method is a context-bound version of the private method `_pushPromise`.
+    If a subclass needs to override, it should override the private method.
+
+  params:
+  - name: name
+    type: string
+    description: name of test
+  - name: test
+    type: function
+    description: |
+      test definition, returns `Promise` object that resolves (with an optional diagnostic message of any type)
+      or rejects (with `Error`) to indicate pass/fail
+  - name: callback
+    type: function
+    description: called when test has run (optional)
+    params:
+    - name: error
+      type: Error|falsy
+      description: error indicating test failure (or falsy)
+    - name: info
+      type: TestResultInfo
+
+  examples:
+  - code: |
+      testQueue.pushPromise('Should pass', () => new Promise((resove, reject) => {
+          setTimeout(() => {
+            resove('optional diagnostic message'); // pass
+          }, 100);
+      }));
+
+      testQueue.pushPromise('Should fail', () => new Promise((resove, reject) => {
+          setTimeout(() => {
+            reject(new Error('nope')); // fail
+          }, 100);
+      }));
+
+
+- name: pushSync
+
+  description: |
+    Enqueue a synchronous test. This should not be called after [`this.run`](#run).
+    Compatible with `promisify`.
+
+    This method is a context-bound version of the private method `_pushSync`.
+    If a subclass needs to override, it should override the private method.
+
+  params:
+  - name: name
+    type: string
+    description: name of test
+  - name: test
+    type: function
+    description: |
+      test definition, returns optional diagnostic message of any type (or falsy),
+      throw an `Error` to indicate failure
+  - name: callback
+    type: function
+    description: called when test has run (optional)
+    params:
+    - name: error
+      type: Error|falsy
+      description: error indicating test failure (or falsy)
+    - name: info
+      type: TestResultInfo
+
+  examples:
+  - code: |
+      testQueue.pushSync('Should pass', () => {
+          return 'optional diagnostic message'; // pass
+      });
+
+      testQueue.pushSync('Should pass', () => {
+          throw new Error('nope'); // fail
+      });
+
+
+
+- name: run
+
+  description: |
+    Run enqueued tests. This should only be called once.
+    Compatible with `promisify`.
+
+    This method is a context-bound version of the private method `_run`.
+    If a subclass needs to override, it should override the private method.
+
+  params:
+  - name: callback
+    type: function
+    description: called when all tests have run (optional)
+    params:
+    - name: error
+      type: Error|falsy
+      description: |
+        Reporter error (an error encountered while reporting the result, not an error indicating test failure)
+        that occurred (or falsy)
+    - name: info
+      type: RunEndInfo
+
+  examples:
+  - code: |
+      // exit the process when complete
+      testQueue.run(testQueue.exit);
+  - code: |
+      // provide a custom callback
+      testQueue.run((error, info) => {
+          // handle error/info
+      });
+
+- name: exit
+
+  description: |
+    If `error` is not falsy, emit it.
+    Otherwise, exit the process with code determined by `info.exitCode`.
+
+    This method is a context-bound version of the private method `_exit`.
+    If a subclass needs to override, it should override the private method.
+
+  params:
+  - name: error
+    type: Error|falsy
+  - name: info
+    type: RunEndInfo
+
+  examples:
+  - code: |
+      // exit the process when complete
+      testQueue.run(testQueue.exit);
+
+
+
+- name: setAutoRun
+
+  description: |
+    Enable/disable auto-run mode.
+    Tests will be executed as soon as they are defined (without waiting for [`this.run`](#run) to be called).
+
+    <div class="note" markdown="1">
+    When in auto-run mode, the `runStart` event does not fire and `reporter.runStart` is not called.
+    Also, the TAP plan (ex. "1..4") is not included in the output.
+    </div>
+
+    This method is context-bound.
+
+  params:
+  - name: isEnabled
+    type: bool
+
+  examples:
+  - code: |
+      testQueue.setAutoRun(true);
+
+
+- name: setBail
+
+  description: |
+    Enable/disable bail mode.
+    If `true`, the queue will drain after the first test failure
+    (when running tests in parallel, tests that are already running when the failure occurs may still complete).
+
+    This method is context-bound.
+
+  params:
+  - name: isEnabled
+    type: bool
+
+  examples:
+  - code: |
+      testQueue.setBail(true);
+
+
+- name: setConcurrency
+
+  description: |
+    Set the number of tests to run in parallel.
+
+    This method is context-bound.
+
+  params:
+  - name: n
+    type: number
+    description: max number of tests to run concurrently
+
+  examples:
+  - code: |
+      testQueue.setConcurrency(10);
+

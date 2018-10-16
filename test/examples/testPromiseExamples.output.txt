@@ -1,0 +1,42 @@
+1..13
+ok 1 - Should pass
+ok 2 - Should pass with message
+# O hi Mark!
+ok 3 - Should pass with numeric message
+# 123
+ok 4 - Should pass with object message
+# {
+#   "count": 4,
+#   "total": 8
+# }
+not ok 5 - Should fail
+# ! false == true
+not ok 6 - Should fail with message
+# ! Example error message
+not ok 7 - Should fail comparison
+# ! 'A' === 'B'
+not ok 8 - Should fail comparison with message
+# ! > BABBAB
+# ! < BAABBB
+not ok 9 - Should fail comparison with message (without assert A)
+# ! > BABBAB
+# ! < BAABBB
+not ok 10 - Should fail comparison with message (without assert B)
+# ! > BABBAB
+# ! < BAABBB
+not ok 11 - Should fail comparison with prefixed message
+# ! > B
+# ! > A
+# ! > C
+# ! ---
+# ! < A
+# ! < B
+# ! < C
+# ! < 
+not ok 12 - Should fail nested async operation try/catch
+# ! level 1
+not ok 13 - Should fail nested async operation
+# ! level 1
+# test: 13
+# pass: 4
+# fail: 9

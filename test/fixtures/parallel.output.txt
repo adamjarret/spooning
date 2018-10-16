@@ -1,0 +1,7 @@
+1..3
+ok 1 - first
+ok 2 - second
+ok 3 - third
+# test: 3
+# pass: 3
+# fail: 0

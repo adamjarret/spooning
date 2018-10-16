@@ -1,0 +1,69 @@
+name: acEx
+kind: function
+
+description: |
+  Return a formatted message that compares actual/expected values.
+
+params:
+- name: actual
+  type: any
+  description: actual value
+
+- name: expected
+  type: any
+  description: expected value
+
+- name: prefix
+  type: string
+  description: added to the start of the returned message
+  default: "''"
+
+returns:
+  type: string
+  #description: formatted message
+
+see:
+- name: maybeStringify
+  description: used by this function to produce the string representation of the actual and expected values
+
+- name: UnexpectedOutputError
+  description: uses this function to generate the error message
+
+examples:
+- caption: No Prefix
+  code: |
+    const {acEx} = require('spooning');
+    console.log(acEx('A', 'B'));
+  output: |
+    <<<<<<< actual
+    A
+    =======
+    B
+    >>>>>>> expected
+
+- caption: Prefix
+  code: |
+    const {acEx} = require('spooning');
+    console.log(acEx('A', 'B', 'Unexpected output\n'));
+  output: |
+    Unexpected output
+    <<<<<<< actual
+    A
+    =======
+    B
+    >>>>>>> expected
+
+- caption: Use in Assertion
+  code: |
+    const {deepEqual} = require('assert');
+    const {acEx, testSync} = require('spooning');
+
+    function greet(name) {
+      return `Hello, ${name}!`;
+    }
+
+    testSync('Should greet world', () => {
+      const actual = {greeting: greet('world')};
+      const expected = {greeting: 'Hello, world!'};
+      deepEqual(actual, expected, acEx(actual, expected, 'did not greet world'));
+    });

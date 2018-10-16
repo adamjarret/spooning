@@ -1,0 +1,5 @@
+{%- assign constructor = include.memberOf.name | prepend: "new " -%}
+
+{{- include.meta.name | replace: "constructor", constructor -}}
+
+({% if include.meta.params %}{{ include.meta.params | map: 'name' | join: ', '}}{% endif %})

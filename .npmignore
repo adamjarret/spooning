@@ -1,0 +1,7 @@
+# dot prefixed files and directories
+.*
+
+spooning-*.tgz
+docs/
+examples/
+test/

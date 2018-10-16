@@ -1,0 +1,67 @@
+{% assign fn_meta = include.meta %}
+{% assign h = include.h | default: 1 %}
+{% assign h1 = h | prepend: "h" %}
+{% assign h2 = h | plus: 1 | prepend: "h" %}
+{% assign h3 = h | plus: 2 | prepend: "h" %}
+
+<{{ h1 }} id="{{ include.id | downcase }}">
+<code>{{ include.namespace }}{% include nameWithParams.html meta=fn_meta memberOf=include.memberOf %}</code>
+<{{ h1 | prepend: "/" }}>
+
+<!-- Aliases -->
+{%- if fn_meta.aliases -%}
+<blockquote><i>alias:</i> <code>{{ fn_meta.aliases | join: '</code>, <code>' }}</code></blockquote>
+{%- endif -%}
+
+<!-- Description -->
+{%- if fn_meta.description -%}
+{{ fn_meta.description | markdownify }}
+{%- endif -%}
+
+<!-- Parameters -->
+{% assign tree = fn_meta.params %}
+{% include paramTree.html %}
+
+<!-- Returns -->
+{% if fn_meta.returns %}
+<div class="returns">
+    <strong>returns</strong>
+    {% include maybeLink.html type=fn_meta.returns.type class="type" %}
+    {% include description.html description=fn_meta.returns.description %}
+</div>
+{% endif %}
+
+<!-- See -->
+{% if fn_meta.see %}
+<div class="see">
+    <{{ h2 }}>See<{{ h2 | prepend: "/" }}>
+    <ul>
+        {% for o in fn_meta.see %}
+        <li>
+            {% include maybeLink.html type=o.name class="code" %}
+            {% include description.html description=o.description %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<!-- Examples -->
+{% if fn_meta.examples %}
+<div class="examples">
+    <{{ h2 }}>Examples<{{ h2 | prepend: "/" }}>
+    {% for o in fn_meta.examples %}
+
+    {% if o.caption %}<{{ h3 }}>{{ o.caption }}<{{ h3 | prepend: "/" }}>{% endif %}
+
+    {% highlight js %}{{ o.code }}{% endhighlight %}
+
+    {% if o.output %}
+    <p><strong>Output</strong></p>
+    <div class="highlight"><pre><code>{{ o.output }}</code></pre></div>
+    {% endif %}
+
+    {% endfor %}
+</div>
+{% endif %}
+

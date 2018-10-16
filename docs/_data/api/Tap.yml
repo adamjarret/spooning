@@ -1,0 +1,269 @@
+name: Tap
+kind: class
+
+description: |
+  Render [TAP](https://testanything.org)-formatted output.
+
+properties:
+- name: style
+  type: Object
+  description: define style prefixes for output elements
+
+- name: debug
+  type: bool
+  description: include stack trace in error output if `true`
+
+- name: EOL
+  type: string
+  description: line ending used when rendering output
+
+static:
+- name: Styles
+  type: Object
+  description: Available styles. See [Customization](/spooning/guide/customization).
+  properties:
+  - name: None
+    type: TapStyle
+    description: plain text
+
+  - name: Basic
+    type: TapStyle
+    description: colors but no "icons"
+
+  - name: Unicode
+    type: TapStyle
+    description: colors and `✔` or `✘` "icons"
+
+- name: messageToString
+  type: function
+  description: This function is used to get the string value of messages passed to `renderDiagnostic`.
+  params:
+  - name: val
+    type: any
+    description: value to be stringified (maybe)
+
+  - name: indent
+    type: number
+    description: number of spaces used to indent the JSON object
+    default: 2
+  returns:
+    type: string|undefined
+  see:
+  - name: maybeStringify
+    description: used by this function to produce the string
+
+  - name: "#renderDiagnostic"
+    description: uses this function to get the string value of `message`
+
+
+methods:
+- name: constructor
+
+  description: |
+    Creates a new `Tap` object and sets the `this.style`, `this.debug`, and `this.EOL` properties.
+
+  params:
+  - name: style
+    type: Object
+    description: define style prefixes for output elements
+    default: Tap.Styles.None
+
+  - name: debug
+    type: bool
+    description: include stack trace in error output if `true`
+    default: "false"
+
+  - name: EOL
+    type: string
+    description: line ending used when rendering output
+    default: "'\\n'"
+
+  examples:
+  - code: |
+      const {Tap} = require('spooning');
+      const tap = new Tap(Tap.Styles.Unicode);
+
+
+
+- name: renderPlan
+
+  description: |
+    Render and return a TAP plan string.
+
+  params:
+  - name: count
+    type: number
+    description: the number of tests to be run
+
+  returns:
+    type: string
+
+  examples:
+  - code: |
+      return tap.renderPlan(4); // returns "1..4"
+
+
+
+- name: renderResult
+
+  description: |
+    Render and return a TAP result string.
+
+  params:
+  - name: ok
+    type: bool
+    description: "`true` if the test passed, otherwise `false`"
+
+  - name: idx
+    type: number
+    description: test number (determined by order finished)
+
+  - name: name
+    type: string
+    description: test name
+
+  - name: suffix
+    type: string
+    description: will be prefixed with `this.EOL` and added to the end of the result string
+
+  returns:
+    type: string
+
+  examples:
+  - code: |
+      return tap.renderResult(true, 1); // returns "ok 1"
+
+
+
+- name: renderDiagnostic
+
+  description: |
+    Render and return a TAP diagnostic string.
+
+  params:
+  - name: message
+    type: any
+    description: message to display
+
+  - name: prefix
+    type: string
+    description: prefix will be added to each line in rendered message
+    default: "'# '"
+
+  returns:
+    type: string
+
+  examples:
+  - code: |
+      return tap.renderDiagnostic('Test message'); // returns "# Test message"
+
+
+- name: handleStart
+
+  description: |
+    Render and return a TAP plan string.
+
+  params:
+  - name: info
+    type: RunStartInfo
+
+  returns:
+    type: string
+
+  examples:
+  - code: |
+      return tap.handleStart({count: 4}); // returns "1..4"
+
+
+
+- name: handleEnd
+
+  description: |
+    Render and return a TAP diagnostic message containing a footer with final result counts.
+
+  params:
+  - name: info
+    type: RunEndInfo
+
+  returns:
+    type: string
+
+  examples:
+  - code: |
+      return tap.handleEnd({total: 4, passed: 4}); // returns "# test: 4\n# pass: 4\n# fail: 0"
+
+
+
+- name: handleResult
+
+  description: |
+    Render and return a TAP result message that includes any error and/or diagnostic message provided.
+
+  params:
+  - name: info
+    type: TestResultInfo
+
+  returns:
+    type: string
+
+  examples:
+  - code: |
+      return tap.handleResult({idx: 1, name: 'expected message'}); // returns "ok 1 - expected message"
+
+
+
+- name: prefixLines
+
+  description: |
+    Add a prefix to every line of a string.
+
+  params:
+  - name: text
+    type: string
+
+  - name: prefix
+    type: string
+
+  returns:
+    type: string
+
+  examples:
+  - code: |
+      console.log(tap.prefixLines('Test message\nSecond line\nThird line', '# ! '))
+    output: |
+      # ! Test message
+      # ! Second line
+      # ! Third line
+
+
+
+- name: setStyle
+
+  description: |
+    Set the `this.style` property. Changes the style used when rendering output.
+
+  params:
+  - name: style
+    type: TapStyle
+
+
+
+- name: setDebug
+
+  description: |
+    Set the `this.debug` property. Causes Error stack to be included in output if `true`.
+
+  params:
+  - name: isEnabled
+    type: bool
+
+
+
+- name: setEOL
+
+  description: |
+    Set the `this.EOL` property. Changes the line ending character used when rendering output.
+
+  params:
+  - name: eol
+    type: string

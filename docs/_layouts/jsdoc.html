@@ -1,0 +1,121 @@
+---
+layout: default
+---
+
+{% assign meta = site.data.api[page.title] %}
+
+<div class="kind-{{ meta.kind }}">
+    {% if meta.kind == "function" %}
+
+    {% include function.html meta=meta %}
+
+    {% else %}
+
+    <h1>{{ meta.name }}</h1>
+
+    {% if meta.description %}{{ meta.description | markdownify }}{% endif %}
+
+    <!-- TOC: Methods -->
+    {% if meta.methods %}
+    <div class="toc-methods">
+        <p><strong>Methods</strong></p>
+        <ul>
+            {% for o in meta.methods %}
+            <li><a href="#{{ o.name | downcase }}"><code>{% include nameWithParams.html meta=o memberOf=meta
+                %}</code></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- TOC: Static -->
+    {% if meta.static %}
+    <div class="toc-static">
+        <p><strong>Static</strong></p>
+        <ul>
+            {% for o in meta.static %}
+            <li>
+                {%- if o.type == 'function' -%}
+
+                <a href="#{{ o.name | downcase }}">
+                    <code>
+                        {%- include nameWithParams.html meta=o memberOf=meta -%}
+                    </code>
+                </a>
+
+                {%- else -%}
+
+                <code>{{- o.name -}}</code>
+
+                {%- endif -%}
+
+                {%- include maybeLink.html type=o.type class="type" -%}
+                {%- include description.html description=o.description -%}
+
+                {% assign tree = o.properties %}
+                {% include paramTree.html %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Properties -->
+    {% if meta.properties %}
+    <div id="properties">
+        <p><strong>Properties</strong></p>
+        <ul>
+            {% for o in meta.properties %}
+            <li>
+                <code>{{ o.name }}</code>
+                {% include maybeLink.html type=o.type class="type" %}
+                {% include description.html description=o.description %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Events -->
+    {% if meta.emits %}
+    <div id="events">
+        <p><strong>Events</strong></p>
+        <ul>
+            {% for o in meta.emits %}
+            <li>
+                <code>{{ o.name }}</code>
+                {% include maybeLink.html type=o.type class="type" %}
+                {% include description.html description=o.description %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Methods -->
+    {% if meta.methods %}
+    <div id="methods">
+        {% for o in meta.methods %}
+        {% assign id = o.name | downcase %}
+        {% include function.html meta=o h=2 id=id memberOf=meta %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Static -->
+    {% if meta.static %}
+    <div id="static">
+        {% for o in meta.static %}
+        {%- assign id = o.name | downcase -%}
+        {%- if o.type == 'function' -%}
+
+        {%- include function.html meta=o h=2 id=id memberOf=meta namespace="Tap." -%}
+
+        {%- endif -%}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% endif %}
+</div>
+

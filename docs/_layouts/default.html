@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-7629936-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-7629936-13');
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TAP-producing test runner that is minimal but not uncivilized">
+    <link rel='shortcut icon' type='image/x-icon' href='{{ site.baseurl }}/favicon.ico' />
+    <title>
+        {%- if page.title %}{{ page.title }} - {% endif %}
+        {%- if page.section %}{{ page.section }} - {% endif %}
+        {{- site.title | default: "spooning" -}}
+    </title>
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/site.css">
+</head>
+
+<body class="nojs">
+
+<div id="container" class="container markdown-body syntax">
+
+    {% include sidebar.html %}
+
+    <div id="content" class="content">
+
+        <div id="content-overlay" class="content-overlay"></div>
+
+        <div class="content-inner">
+
+            <header>
+
+                <noscript>
+                    <link rel="stylesheet" href="{{ site.baseurl }}/css/fallback.css">
+                    <nav class="fallback">
+                        <ul>
+                            <li><a href="{{ site.baseurl }}/">Home</a></li>
+                            <li><a href="{{ site.data.urls.guide }}">User Guide</a></li>
+                            <li><a href="{{ site.data.urls.api }}">API</a></li>
+                        </ul>
+                    </nav>
+                </noscript>
+
+                <span id="sidebar-trigger-container"></span>
+
+                {% if page.title %}
+                <nav class="breadcrumbs">
+                        <a href="{{ site.baseurl }}/">spooning</a>
+                        {% if page.section -%}
+                            / <a href="{{ site.baseurl }}/{{ page.section | slugify | replace: 'user-', '' }}/">
+                                {{- page.section -}}
+                              </a>
+                        {%- endif %}
+                        / <span>{{page.title}}</span>
+                </nav>
+                {% endif %}
+
+            </header>
+
+            <main class="{{ page.type }}">
+                {{ content }}
+            </main>
+
+            <footer>
+                <p>Copyright &copy; 2018 <a href="https://atj.me">Adam Jarret</a>. <a href="{{ site.data.urls.license }}">MIT licensed</a>.</p>
+                <p>
+                    Logo licensed <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="external">CC BY 3.0</a> by <a href="https://www.flaticon.com/free-icon/spoons_112433">freepik</a>.
+                    <span class="only-mobile"><br/>Menu icon licensed <a href="https://creativecommons.org/licenses/by-nd/3.0/" title="Creative Commons BY-ND 3.0" target="_blank" rel="external">CC BY-ND 3.0</a> by <a href="https://icons8.com/icon/3761/menu">icons8</a>.</span>
+                </p>
+                <p>&#x1F944;</p>
+            </footer>
+
+        </div>
+    </div>
+
+</div>
+
+<script type="text/template" id="sidebar-trigger-template">
+    <a id="sidebar-trigger" class="sidebar-trigger btn-svg">
+        <svg viewBox="0 0 1 1" style="width: 34px; height: 34px;">
+            Menu
+            <circle cx="50%" cy="50%" r="50%" class="shape"></circle>
+            <svg width="50%" x="25%" viewBox="0 0 24 24" class="icon">
+                <path d="M 0 2 L 0 4 L 24 4 L 24 2 Z M 0 11 L 0 13 L 24 13 L 24 11 Z M 0 20 L 0 22 L 24 22 L 24 20 Z "></path>
+            </svg>
+        </svg>
+    </a>
+</script>
+
+<!--suppress ES6ConvertVarToLetConst -->
+<script type="text/javascript">
+    (function () {
+        var openClass = 'open';
+        var container = document.getElementById('container');
+        var template = document.getElementById('sidebar-trigger-template');
+
+        // add sidebar trigger to DOM with JS so it is not present when JS is disabled
+        document.getElementById('sidebar-trigger-container').innerHTML = template.innerHTML;
+
+        document.getElementById('sidebar-trigger').onclick = function () {
+            container.classList.add(openClass);
+        };
+
+        document.getElementById('content-overlay').onclick = function () {
+            container.classList.remove(openClass);
+        };
+
+        document.body.classList.remove('nojs');
+    })();
+</script>
+
+</body>
+
+</html>

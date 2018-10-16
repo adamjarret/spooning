@@ -1,0 +1,112 @@
+# Repo
+
+cli: https://github.com/adamjarret/spooning-cli
+
+repo: https://github.com/adamjarret/spooning
+
+tags: https://github.com/adamjarret/spooning/tags
+
+examples: https://github.com/adamjarret/spooning/tree/master/test/examples
+
+license: https://github.com/adamjarret/spooning/blob/master/LICENSE.txt
+
+
+# Page Widgets
+
+constructor: #constructor
+
+
+# User Guide
+
+guide: /spooning/guide
+
+Customization: /spooning/guide/customization
+
+GettingStarted: /spooning/guide/getting-started
+
+Integration: /spooning/guide/integration
+
+RunningTests: /spooning/guide/running-tests
+
+WritingTests: /spooning/guide/writing-tests
+
+
+
+# API
+
+api: /spooning/api
+
+acEx: /spooning/api/acEx
+
+isString: /spooning/api/isString
+
+maybeStringify: /spooning/api/maybeStringify
+
+Reporter: /spooning/api/Reporter
+
+Tap: /spooning/api/Tap
+
+TestQueue: /spooning/api/TestQueue
+
+UnexpectedOutputError: /spooning/api/UnexpectedOutputError
+
+Types: /spooning/api/types
+
+TapStyle: /spooning/api/types#tapstyles
+
+RunStartInfo: /spooning/api/types#runstartinfo
+
+RunEndInfo: /spooning/api/types#runendinfo
+
+TestResultInfo: /spooning/api/types#testresultinfo
+
+
+# MDN
+
+bool: https://developer.mozilla.org/en-US/docs/Glossary/boolean
+
+number: https://developer.mozilla.org/en-US/docs/Glossary/number
+
+string: https://developer.mozilla.org/en-US/docs/Glossary/string
+
+Array: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+Set: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set
+
+Object: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+Promise: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+
+# node.js
+
+Error: https://nodejs.org/api/errors.html
+
+Writable: https://nodejs.org/api/stream.html#stream_writable_streams
+
+assert: https://nodejs.org/api/assert.html
+
+nodeUtil: https://nodejs.org/api/util.html
+
+promisify: https://nodejs.org/api/util.html#util_util_promisify_original
+
+
+# Other
+
+async: https://caolan.github.io/async/
+
+coveralls: https://coveralls.io/
+
+coverallsNode: https://github.com/nickmerwin/node-coveralls
+
+eslint: https://eslint.org
+
+lodash: https://lodash.com
+
+nyc: https://istanbul.js.org/
+
+travis: https://travis-ci.org/
+
+tape: https://github.com/substack/tape
+
+testanything: http://testanything.org

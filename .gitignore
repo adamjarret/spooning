@@ -1,0 +1,5 @@
+# dot prefixed directories
+.*/
+
+spooning-*.tgz
+node_modules/

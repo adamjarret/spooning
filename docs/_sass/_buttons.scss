@@ -1,0 +1,43 @@
+@import "variables";
+
+.btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: $btn-bg;
+  color: $btn-color;
+  box-shadow: 1px 1px 2px $box-shadow-color;
+  margin-right: 16px;
+  border-radius: 5px;
+}
+
+.btn:visited:hover,
+.btn:hover {
+  text-decoration: none;
+  background-color: $btn-bg-hover;
+  color: $btn-color
+}
+
+.btn:visited {
+  background-color: $btn-bg;
+  color: $btn-color
+}
+
+
+
+.btn-svg {
+  -webkit-filter: drop-shadow(1px 1px 2px grey);
+  filter: drop-shadow(1px 1px 2px grey);
+}
+
+.btn-svg .shape {
+  fill: $btn-bg;
+}
+
+.btn-svg:focus .shape,
+.btn-svg:hover .shape {
+  fill: $btn-bg-hover;
+}
+
+.btn-svg .icon {
+  fill: $btn-color;
+}

@@ -1,0 +1,16 @@
+{% assign urls = site.data.urls %}
+{% assign types = include.type | split: "|" %}
+
+<span class="{{ include.class }}">
+{%- for type in types -%}
+    {%- if forloop.first == false %}|{% endif -%}
+    {% assign hash = type | slice:0 %}
+    {%- if hash == "#" -%}
+        <a href="{{ type | downcase }}">{{type | replace_first: hash, "this."}}</a>
+    {%- elsif urls[type] -%}
+        <a href="{{ urls[type] }}">{{type}}</a>
+    {%- else -%}
+        <span>{{type}}</span>
+    {%- endif -%}
+{%- endfor -%}
+</span>

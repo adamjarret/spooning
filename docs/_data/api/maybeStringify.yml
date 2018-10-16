@@ -1,0 +1,48 @@
+name: maybeStringify
+kind: function
+
+description: >
+  If the provided value is a string, return it unchanged. Otherwise encode it with
+  [`JSON.stringify`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+  and return the result.
+
+params:
+- name: val
+  type: any
+  description: value to be stringified (maybe)
+
+- name: indent
+  type: number
+  description: number of spaces used to indent the JSON object
+  default: 2
+
+returns:
+  type: string|undefined
+
+see:
+- name: isString
+  description: used by this function to determine whether or not to process the value
+
+- name: acEx
+  description: uses this function to produce the string representation of the actual and expected values
+
+- name: Tap
+  description: uses this function as the default implementation of the `Tap.messageToString` method
+
+examples:
+- code: |
+    const {maybeStringify} = require('spooning');
+
+    maybeStringify('foo'); // returns 'foo'
+
+    maybeStringify({foo: 'bar'}); // returns '{\n  "foo": "bar"\n}'
+
+    maybeStringify(); // returns undefined
+
+    maybeStringify(null); // returns 'null'
+
+    maybeStringify(true); //returns 'true'
+
+    maybeStringify(123); //returns '123'
+
+    maybeStringify(new Date(Date.UTC(2018, 9, 7, 23, 11, 43, 81))); // returns '"2018-10-07T23:11:43.081Z"'

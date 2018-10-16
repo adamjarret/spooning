@@ -1,0 +1,62 @@
+@import "mixins";
+@import "variables";
+
+header {
+
+  position: fixed;
+  width: 100%;
+  min-width: $body-min-width;
+  padding: 8px 20px;
+  background-color: $header-bg;
+  box-shadow: 0 2px 4px $box-shadow-color;
+  margin: 0px -20px;
+
+  .btn-svg {
+    margin: 3px;
+    display: inline-block;
+    overflow: visible;
+    border: none;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .sidebar-trigger {
+    margin-right: 10px;
+  }
+
+  .title {
+    text-align: center;
+    display: inline-block;
+  }
+
+  .breadcrumbs {
+    display: inline-block;
+    span {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: $min-sm) {
+    .breadcrumbs span {
+      display: inline-block;
+    }
+  }
+
+}
+
+main {
+  // offset for fixed header
+  padding-top: 60px;
+}
+
+@media screen and (min-width: $min-md) {
+  header {
+    position: static;
+    box-shadow: none;
+    padding: 20px 0 0 0;
+    margin: 0;
+  }
+  main {
+    padding-top: 0;
+  }
+}

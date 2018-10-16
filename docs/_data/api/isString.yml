@@ -1,0 +1,33 @@
+name: isString
+kind: function
+
+description: |
+  Return `true` if the provided value is a string literal or `String` object (otherwise return `false`).
+  Uses the [`Object.prototype.toString.call(val) === '[object String]'` implementation](https://stackoverflow.com/a/17772086).
+
+params:
+- name: val
+  type: any
+  description: value to be checked
+
+returns:
+  type: bool
+
+see:
+- name: maybeStringify
+  description: uses this function to determine whether or not to process the value
+
+examples:
+- code: |
+    const {isString} = require('spooning');
+
+    isString('string'); // returns true
+
+    // noinspection JSPrimitiveTypeWrapperUsage
+    isString(new String('string')); // returns true
+
+    isString(null); // returns false
+
+    isString(123); // returns false
+
+    isString(); // returns false

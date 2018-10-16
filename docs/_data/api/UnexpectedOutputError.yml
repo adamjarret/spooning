@@ -1,0 +1,67 @@
+name: UnexpectedOutputError
+kind: class
+
+description: |
+  Create an Error with a formatted message that compares actual/expected values.
+  This error is not thrown by spooning, it is provided as a convenience for test implementations.
+  Using it is entirely optional.
+
+properties:
+- name: actual
+  type: any
+  description: unchanged `actual` value passed to constructor
+
+- name: expected
+  type: any
+  description: unchanged `expected` value passed to constructor
+
+methods:
+- name: constructor
+
+  description: |
+    Creates a new `UnexpectedOutputError` object and sets the `this.actual` and `this.expected` properties.
+
+  params:
+  - name: actual
+    type: any
+    description: actual value
+
+  - name: expected
+    type: any
+    description: expected value
+
+  - name: prefix
+    type: string
+    description: added to the start of the returned message
+    default: "'Unexpected output\\n'"
+
+  see:
+  - name: acEx
+    description: used by the constructor to generate the error message
+
+  examples:
+  - caption: Show Error Message
+    code: |
+      const {UnexpectedOutputError} = require('spooning');
+      const error = new UnexpectedOutputError('A', 'B');
+      console.log(error.message);
+    output: |
+      Unexpected output
+      <<<<<<< actual
+      A
+      =======
+      B
+      >>>>>>> expected
+
+  - caption: Use in Unit Test
+    code: |
+      const {test, UnexpectedOutputError} = require('spooning');
+
+      function greet(name) {
+        return `Hello, ${name}!`;
+      }
+
+      test('Should greet world', (callback) => {
+        const error = new UnexpectedOutputError(greet('world'), 'Hello, world!');
+        callback(error.actual === error.expected ? null : error);
+      });

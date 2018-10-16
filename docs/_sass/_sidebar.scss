@@ -1,0 +1,51 @@
+@import "variables";
+
+.sidebar {
+  background-color: $sidebar-bg;
+  box-shadow: 2px 0 4px $box-shadow-color;
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      padding: 8px;
+    }
+  }
+
+  .site-title {
+    font-size: 22px;
+    color: $sidebar-title;
+    display: block;
+    margin-bottom: 24px;
+  }
+  .site-title:visited {
+    color: $sidebar-title;
+  }
+
+  .section-title,
+  .section-subtitle {
+    font-variant: small-caps;
+    display: block;
+    margin-bottom: 16px;
+    margin-top: 8px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    color: $sidebar-title;
+    font-weight: bold;
+  }
+  .section-title:visited {
+    color: $sidebar-title;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: $sidebar-subtitle;
+    //margin-left: 8px;
+  }
+  .section-subtitle:visited {
+    color: $sidebar-subtitle;
+  }
+}
