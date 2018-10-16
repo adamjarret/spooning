@@ -1,5 +1,8 @@
 # spooning 
 
+[![Build Status](https://travis-ci.org/adamjarret/spooning.svg?branch=master)](https://travis-ci.org/adamjarret/spooning)
+[![Coverage Status](https://coveralls.io/repos/github/adamjarret/spooning/badge.svg?branch=master)](https://coveralls.io/github/adamjarret/spooning?branch=master)
+
 [TAP][testanything]-producing test runner that is minimal but not uncivilized
 
  - [User Guide][guide]
