@@ -1,7 +1,7 @@
 # spooning 
 
 [![Build Status](https://travis-ci.org/adamjarret/spooning.svg?branch=master)](https://travis-ci.org/adamjarret/spooning)
-[![Coverage Status](https://coveralls.io/repos/github/adamjarret/spooning/badge.svg?branch=master)](https://coveralls.io/github/adamjarret/spooning?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/adamjarret/spooning/badge.svg?branch=master)](https://coveralls.io/github/adamjarret/spooning?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/adamjarret/spooning.svg)](https://greenkeeper.io/)
 
 [TAP][testanything]-producing test runner that is minimal but not uncivilized
 
