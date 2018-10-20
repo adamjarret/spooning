@@ -55,15 +55,16 @@ for use in tests. Using it is entirely optional.
 
 ## Avoid "Callback Hell"
 
-Folks eager to avoid "callback hell" should note that spooning uses [async][async]
-internally and exports it for convenience. The example above could be refactored like this:
+Folks eager to avoid "callback hell" should note that spooning uses [neo-async][neo-async] internally.
+If installed in your module (`npm i -D neo-async`), the example above could be refactored like this:
 
 ```js
-const {async, test, UnexpectedOutputError} = require('spooning');
+const {waterfall} = require('neo-async');
+const {test, UnexpectedOutputError} = require('spooning');
 
 test('Should respond with 200', (callback) => {
 
-    async.waterfall([
+    waterfall([
         getStatus,
         (response, cb) => cb(null, new UnexpectedOutputError(response.statusCode, 200)),
         (e, cb) => cb(e.actual === e.expected ? null : e)
@@ -162,7 +163,7 @@ Continue to [Running Tests][RunningTests] for examples of how to organize tests 
 
 [assert]: {{ site.data.urls.assert }}
 
-[async]: {{ site.data.urls.async }}
+[neo-async]: {{ site.data.urls.neoAsync }}
 
 [acEx]: {{ site.data.urls.acEx }}
 

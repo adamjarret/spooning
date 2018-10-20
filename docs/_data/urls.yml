@@ -93,7 +93,7 @@ promisify: https://nodejs.org/api/util.html#util_util_promisify_original
 
 # Other
 
-async: https://caolan.github.io/async/
+neoAsync: https://www.npmjs.com/package/neo-async
 
 eslint: https://eslint.org
 

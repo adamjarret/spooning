@@ -17,6 +17,3 @@ module.exports.UnexpectedOutputError = require('./lib/errors/UnexpectedOutputErr
 module.exports.acEx = require('./lib/util/acEx');
 module.exports.isString = require('./lib/util/isString');
 module.exports.maybeStringify = require('./lib/util/maybeStringify');
-
-// External (for convenience)
-module.exports.async = require('async');

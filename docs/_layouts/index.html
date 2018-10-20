@@ -2,6 +2,16 @@
 layout: default
 ---
 
+{%- capture badges -%}
+[![Package Version](https://badgen.net/npm/v/spooning)](https://npmjs.com/package/spooning)
+[![Install Size](https://badgen.net/packagephobia/install/spooning)](https://packagephobia.now.sh/result?p=spooning)
+[![Build Status](https://badgen.net/travis/adamjarret/spooning)](https://travis-ci.org/adamjarret/spooning)
+[![Coverage Status](https://badgen.net/codecov/c/github/adamjarret/spooning)](https://codecov.io/gh/adamjarret/spooning)
+[![Dependencies](https://badgen.net/david/dep/adamjarret/spooning)](https://david-dm.org/adamjarret/spooning)
+[![Dev Dependencies](https://badgen.net/david/dev/adamjarret/spooning)](https://david-dm.org/adamjarret/spooning?type=dev)
+[![Greenkeeper](https://badges.greenkeeper.io/adamjarret/spooning.svg)](https://greenkeeper.io/)
+{%- endcapture -%}
+
 <link rel="stylesheet" href="{{ site.baseurl }}/css/index.css">
 
 <div class="text-center">
@@ -24,12 +34,7 @@ layout: default
 </div>
 
 <div class="text-center badges">
-    <a href="https://npmjs.com/package/spooning"><img alt="Package Version" src="https://img.shields.io/npm/v/spooning.svg" /></a>
-    <a href="https://travis-ci.org/adamjarret/spooning"><img alt="Build Status" src="https://img.shields.io/travis/adamjarret/spooning.svg" /></a>
-    <a href="https://codecov.io/gh/adamjarret/spooning"><img alt="Coverage Status" src="https://img.shields.io/codecov/c/github/adamjarret/spooning.svg" /></a>
-    <a href="https://david-dm.org/adamjarret/spooning"><img alt="Dependencies" src="https://img.shields.io/david/adamjarret/spooning.svg" /></a>
-    <a href="https://david-dm.org/adamjarret/spooning?type=dev"><img alt="Dev Dependencies" src="https://img.shields.io/david/dev/adamjarret/spooning.svg" /></a>
-    <a href="https://greenkeeper.io/"><img alt="Greenkeeper" src="https://badges.greenkeeper.io/adamjarret/spooning.svg" /></a>
+    {{ badges | markdownify }}
 </div>
 
 <div class="text-center tagline">

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const async = require('async');
+const {waterfall} = require('neo-async');
 const {it, reporter: {tap}, Reporter, Tap, TestQueue, UnexpectedOutputError} = require('../common/spooning');
 const MockWriteStream = require('../common/MockWriteStream');
 const testExamples = require('../examples/testExamples');
@@ -25,7 +25,7 @@ function compareOutputTest(expectedPath, defs, concurrency = 1)
 
         testQueue.run(() => {
 
-            async.waterfall([
+            waterfall([
                 (cb) => fs.readFile(expectedPath, 'utf8', cb),
                 (expected, cb) => {
                     const actual = testQueue.reporter.stream.toString();

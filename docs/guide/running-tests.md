@@ -99,6 +99,8 @@ To parse a more complex argument structure, use an external library like [minimi
 ```js
 const {setBail, setConcurrency, reporter: {tap}, Tap} = require('spooning');
 
+tap.setStyle(Tap.Styles.Unicode);
+
 process.argv.slice(2).forEach((arg) => {
     const concurrencyMatch = arg.match(/(-c|--concurrency)=(\d+)/);
     if (concurrencyMatch) {

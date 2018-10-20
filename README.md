@@ -1,10 +1,11 @@
 # spooning 
 
-[![Package Version](https://img.shields.io/npm/v/spooning.svg)](https://npmjs.com/package/spooning)
-[![Build Status](https://img.shields.io/travis/adamjarret/spooning.svg)](https://travis-ci.org/adamjarret/spooning)
-[![Coverage Status](https://img.shields.io/codecov/c/github/adamjarret/spooning.svg)](https://codecov.io/gh/adamjarret/spooning)
-[![Dependencies](https://img.shields.io/david/adamjarret/spooning.svg)](https://david-dm.org/adamjarret/spooning)
-[![Dev Dependencies](https://img.shields.io/david/dev/adamjarret/spooning.svg)](https://david-dm.org/adamjarret/spooning?type=dev)
+[![Package Version](https://badgen.net/npm/v/spooning)](https://npmjs.com/package/spooning)
+[![Install Size](https://badgen.net/packagephobia/install/spooning)](https://packagephobia.now.sh/result?p=spooning)
+[![Build Status](https://badgen.net/travis/adamjarret/spooning)](https://travis-ci.org/adamjarret/spooning)
+[![Coverage Status](https://badgen.net/codecov/c/github/adamjarret/spooning)](https://codecov.io/gh/adamjarret/spooning)
+[![Dependencies](https://badgen.net/david/dep/adamjarret/spooning)](https://david-dm.org/adamjarret/spooning)
+[![Dev Dependencies](https://badgen.net/david/dev/adamjarret/spooning)](https://david-dm.org/adamjarret/spooning?type=dev)
 [![Greenkeeper](https://badges.greenkeeper.io/adamjarret/spooning.svg)](https://greenkeeper.io/)
 
 
@@ -254,8 +255,7 @@ false positives that may arise when a library tests itself.
 
 __Dependencies__
 
-- [async][async] — uses `async.queue` to execute defined tests
-    - [lodash][lodash] — `async` depends on `lodash` which has no dependencies
+- [neo-async][neo-async] — uses `queue` from `neo-async` (which has no dependencies) to execute defined tests
 
 __Dev Dependencies__
 
@@ -326,9 +326,7 @@ See the [LICENSE.txt][license] file for details.
 
 [Promise]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[async]: https://caolan.github.io/async/
-
-[lodash]: https://lodash.com
+[neo-async]: https://www.npmjs.com/package/neo-async
 
 [eslint]: https://eslint.org
 

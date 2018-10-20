@@ -99,7 +99,7 @@ To make use of a custom [`Tap`][Tap] subclass and/or [`Reporter`][Reporter] impl
 you have two options:
 
 1. You can export a custom instance of [`TestQueue`][TestQueue] that was initialized by passing instances of
-your custom classes to the constructor (as describe above).
+your custom classes to the constructor (as described above).
 2. You can set the relevant property of the shared [`TestQueue`][TestQueue] instance in your __run.js__ file.
 
 __Custom Tap__
