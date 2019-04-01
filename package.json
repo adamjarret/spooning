@@ -12,7 +12,8 @@
     "lcov": "nyc report --reporter=text-lcov > coverage.lcov",
     "html": "nyc report --reporter=html --report-dir=.coverage",
     "clean": "rm -f test/dump/*.txt spooning-*.tgz",
-    "pack": "npm pack --dry-run"
+    "pack": "npm pack --dry-run",
+    "codecov": "codecov"
   },
   "repository": {
     "type": "git",
@@ -34,12 +35,13 @@
   },
   "homepage": "https://adamjarret.github.io/spooning",
   "dependencies": {
-    "neo-async": "^2.6.0"
+    "neo-async": "2.6.0"
   },
   "devDependencies": {
-    "eslint": "^5.6.1",
-    "nyc": "^13.0.1",
-    "tape": "^4.9.1",
-    "util.promisify": "^1.0.0"
+    "codecov": "3.2.0",
+    "eslint": "5.16.0",
+    "nyc": "13.3.0",
+    "tape": "4.10.1",
+    "util.promisify": "1.0.0"
   }
 }
