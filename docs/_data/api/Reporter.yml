@@ -2,7 +2,7 @@ name: Reporter
 kind: class
 
 description: |
-  This class estabilishes the Reporter protocol: an object that implements `runStart`, `runEnd` and `testResult`.
+  This class establishes the Reporter protocol: an object that implements `runStart`, `runEnd` and `testResult`.
   An object with this signature may be passed as the first argument to the [`TestQueue`](/spooning/api/TestQueue)
   constructor. See [Customization](/spooning/guide/customization) for more information.
 
