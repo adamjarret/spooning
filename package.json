@@ -35,7 +35,7 @@
   },
   "homepage": "https://adamjarret.github.io/spooning",
   "dependencies": {
-    "neo-async": "2.6.0"
+    "neo-async": "2.6.1"
   },
   "devDependencies": {
     "codecov": "3.4.0",
