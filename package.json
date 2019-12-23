@@ -40,7 +40,7 @@
   "devDependencies": {
     "codecov": "3.5.0",
     "eslint": "5.16.0",
-    "nyc": "14.1.1",
+    "nyc": "15.0.0",
     "tape": "4.10.2",
     "util.promisify": "1.0.0"
   }
