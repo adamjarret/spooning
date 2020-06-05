@@ -65,3 +65,18 @@ methods:
         const error = new UnexpectedOutputError(greet('world'), 'Hello, world!');
         callback(error.actual === error.expected ? null : error);
       });
+
+  - caption: Use with assert in Unit Test
+    code: |
+      const {equal} = require('assert');
+      const {testSync, UnexpectedOutputError} = require('spooning');
+
+      function greet(name) {
+        return `Hello, ${name}!`;
+      }
+
+      testSync('Should greet world', () => {
+        const error = new UnexpectedOutputError(greet('world'), 'Hello, world!');
+        equal(error.actual, error.expected, error.message);
+      });
+      

@@ -5,9 +5,6 @@
 [![Build Status](https://badgen.net/travis/adamjarret/spooning)](https://travis-ci.org/adamjarret/spooning)
 [![Coverage Status](https://badgen.net/codecov/c/github/adamjarret/spooning)](https://codecov.io/gh/adamjarret/spooning)
 [![Dependencies](https://badgen.net/david/dep/adamjarret/spooning)](https://david-dm.org/adamjarret/spooning)
-[![Dev Dependencies](https://badgen.net/david/dev/adamjarret/spooning)](https://david-dm.org/adamjarret/spooning?type=dev)
-[![Greenkeeper](https://badges.greenkeeper.io/adamjarret/spooning.svg)](https://greenkeeper.io/)
-
 
 [TAP][testanything]-producing test runner that is minimal but not uncivilized
 
