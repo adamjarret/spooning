@@ -8,7 +8,7 @@
     "tape": "tape test/runTape.js",
     "lint": "eslint index.js lib test",
     "test": "npm run lint && npm run tape",
-    "cover": "nyc npm test",
+    "cover": "nyc npm run tape",
     "lcov": "nyc report --reporter=text-lcov > coverage.lcov",
     "html": "nyc report --reporter=html --report-dir=.coverage",
     "clean": "rm -f test/dump/*.txt spooning-*.tgz",
@@ -38,10 +38,10 @@
     "neo-async": "2.6.1"
   },
   "devDependencies": {
-    "codecov": "3.5.0",
-    "eslint": "5.16.0",
-    "nyc": "14.1.1",
-    "tape": "4.10.2",
-    "util.promisify": "1.0.0"
+    "codecov": "3.7.0",
+    "eslint": "7.1.0",
+    "nyc": "15.1.0",
+    "tape": "5.0.1",
+    "util.promisify": "1.0.1"
   }
 }
