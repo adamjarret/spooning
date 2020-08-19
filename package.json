@@ -38,7 +38,7 @@
     "neo-async": "2.6.1"
   },
   "devDependencies": {
-    "codecov": "3.7.0",
+    "codecov": "3.7.1",
     "eslint": "7.1.0",
     "nyc": "15.1.0",
     "tape": "5.0.1",
